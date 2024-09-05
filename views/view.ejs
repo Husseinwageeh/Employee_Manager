@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>View Employees</title>    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            padding: 20px; /* Add padding to the sides of the screen */
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1> View Employees </h1>
+    <table class="table table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th>EmployeeID</th>
+                <th>FirstName</th>
+                <th>LastName</th>
+                <th>UserName</th>
+                <th>Password</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% employees.forEach(function(employees) { %>
+                <tr>
+                    <td><%= employees.EmployeeID %></td>
+                    <td><%= employees.FirstName %></td>
+                    <td><%= employees.LastName %></td>
+                    <td><%= employees.UserName %></td>
+                    <td><%= employees.Password %></td>
+                    <td><%= employees.Email %></td>
+                    <td><%= employees.Phone %></td>
+                    <td>
+                        <a href="/view/edit/<%= employees.EmployeeID %>" class="btn btn-primary">Edit</a>
+                        <a href="/view/delete/<%= employees.EmployeeID %>" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete?')">Delete</a>
+                    </td>
+                </tr>
+            <% }); %>
+        </tbody>
+    </table>
+    <a href="/view/add" class="btn btn-primary">Add New Employee</a>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

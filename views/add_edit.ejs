@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= employee ? 'Edit Employee' : 'Add New Employee' %></title>
+    
+    <!-- Add Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    
+    <style>
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            font-weight: bold;
+            text-align: left;
+        }
+        
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        input[type="tel"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+        
+        button[type="submit"] {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        
+        .form-container {
+            width: 400px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <h1><%= employee ? 'Edit Employee' : 'Add New Employee' %></h1>
+            <form action="<%= employee ? '/view/edit/' + employee.EmployeeID : '/view/add' %>" method="post">
+                <div class="form-group">
+                    <label for="firstName">First Name:</label>
+                    <input type="text" class="form-control" id="firstName" name="firstName" value="<%= employee ? employee.FirstName : '' %>" required>
+                </div>
+            
+                <div class="form-group">
+                    <label for="lastName">Last Name:</label>
+                    <input type="text" class="form-control" id="lastName" name="lastName" value="<%= employee ? employee.LastName : '' %>" required>
+                </div>
+            
+                <div class="form-group">
+                    <label for="userName">Username:</label>
+                    <input type="text" class="form-control" id="userName" name="userName" value="<%= employee ? employee.UserName : '' %>" <%= employee ? 'readonly' : '' %> required>
+                </div>
+            
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" class="form-control" id="email" name="email" value="<%= employee ? employee.Email : '' %>" <%= employee ? 'readonly' : '' %> required>
+                </div>
+            
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" class="form-control" id="password" name="password" minlength="4" value="<%= employee ? employee.Password : '' %>" required>
+                </div>
+
+               
+                <div class="form-group">
+                    <label for="phone">Phone:</label>
+                    <input type="tel" class="form-control" id="phone" name="phone" pattern="[0-9]+" title="Please enter only numbers" value="<%= employee ? employee.Phone : '' %>" required>
+                </div>
+            
+                    <button type="submit" class="btn btn-primary"><%= employee ? 'Update Employee Data' : 'Add Employee' %></button>
+                        <button type="reset" class="btn btn-danger" onclick="return confirm('Are you sure you want to reset?')">Reset</button>
+                    </form>
+        </div>
+    </div>
+    
+    
+
+    <!-- Add Bootstrap JavaScript -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
